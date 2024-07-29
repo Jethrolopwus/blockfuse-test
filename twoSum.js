@@ -1,23 +1,26 @@
-function intergers (nums, target ) {
+function intergers(nums, target) {
     // checking if the array is empty and return undefined
-    if (nums.length === 0){
+    if (nums.length === 0) {
         return undefined;
     }
 
     const numbers = new Map();
 
-    // iterate throught the array
-    for (let i = 0; i < nums.length; i++){
-        const sum = target - nums[i];
+    // iterate through the array
+    for (let i = 0; i < nums.length; i++) {
+        const complement = target - nums[i];
 
-        if(sum.has(numbers)){
-            return [sum.get(numbers), i];
+        if (numbers.has(complement)) {
+            return [numbers.get(complement), i];
         }
-        sum.set([i], i);
+        numbers.set(nums[i], i);
     }
+    
+    // In case there is no solution, though the problem states there will be one
+    throw new Error('No two sum solution');
 }
 
-const nums = [2,7,11,15];
+const nums = [2, 7, 11, 15];
 const target = 9;
 const result = intergers(nums, target);
 console.log(result);
